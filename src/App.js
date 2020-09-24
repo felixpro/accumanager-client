@@ -1,12 +1,21 @@
+
 import React from 'react';
-import clienteAxios from './config/axios'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import index from './components/layout/index';
+
+import DepartmentState from './context/departments/departmentState';
 
 
 function App() {
   return (
-    <div className="App">
-      <p>kpokj</p>
-    </div>
+      <DepartmentState>
+        <Router>
+          <Switch>{/* Cada una de las paginas */}
+              <Route exact path="/" component={index} />
+          </Switch>
+        </Router>
+      </DepartmentState>
+
   );
 }
 
