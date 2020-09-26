@@ -18,7 +18,8 @@ import {
    const initialState = {
      departmentList: [],
      department: null,
-     departmentSelected: null
+     departmentSelected: null,
+     departmentName:null
    }
 
 // crear dispath y state
@@ -104,6 +105,7 @@ const selectDepartment = (departmentId) => {
           departmentList: state.departmentList,
           department: state.department,
           departmentSelected: state.departmentSelected,
+          departmentName: state.departmentName,
           getDepartaments,
           updateDepartment,
           deleteDepartment,

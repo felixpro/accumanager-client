@@ -56,6 +56,7 @@ const onSubmitDepartment = e => {
     }
 
   updateDepartment(stateDepartment, department._id );
+  
 }
 
 
@@ -84,6 +85,8 @@ const onSubmitDepartment = e => {
                className="btn"
                value="Add department"
              />
+
+
 
            </form>
      </div>

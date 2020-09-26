@@ -21,6 +21,8 @@ export default (state, action) => {
       return {
           ...state,
           departmentList: state.departmentList.filter(department => department._id !== action.payload),
+          departmentSelected: null,
+          departmentName:null
         }
 
       case UPDATE_DEPARTMENTS:
@@ -34,11 +36,13 @@ export default (state, action) => {
         ...state,
         departmentList: [...state.departmentList, action.payload ]
         }
+
       case SELECT_DEPARTMENT:
       return {
           ...state,
           department: state.departmentList.filter(department => department._id !== action.payload),
-          departmentSelected: action.payload
+          departmentSelected: action.payload,
+          departmentName: state.departmentList.filter(department => department._id === action.payload)
         }
 
 

@@ -22,14 +22,20 @@ if (employees.length === 0) return <p>There's not any employee</p>;
 
    return (
      <div className="employee-list">
-       <ul className="department-list">
+       <div className="department-list container">
+         <div className="row">
            {employees.map(employee => (
-             <Employee
-               key={employee._id}
-               employee={employee}
-             />
+             <div className="col-4">
+               <Employee
+                 key={employee._id}
+                 employee={employee}
+               />
+             </div>
+
          ))}
-       </ul>
+         </div>
+
+       </div>
 
 
 

@@ -1,5 +1,6 @@
 import React, {useContext, useState} from 'react';
 import employeesContext from '../../context/employee/employeeContext'
+import Modal from 'react-bootstrap/Modal'
 
 
 
@@ -54,6 +55,7 @@ const Employee = ({employee}) => {
 
       }
       updateEmployee(employeeState, employee._id)
+     setShowEditEmp(false)
     }
 
 
@@ -61,108 +63,123 @@ const Employee = ({employee}) => {
 
 const removeEmployee = () => {
   deleteEmployee(employee._id)
+setShowDeleteEmp(false)
 }
+
+// modal
+const [showEditEmp, setShowEditEmp] = useState(false);
+const [showDeleteEmp, setShowDeleteEmp] = useState(false);
 
 
    return (
      <div className="employee-list">
-       <div>
-         <p>{employee.name}</p>
-         <p>{employee.age}</p>
-         <p>{employee.position}</p>
-         <p>{employee.schedule}</p>
-       </div>
-        <a href="#" data-toggle="modal" data-target={`#edit${employee._id}`} >Edit</a>
-        <a href="#" data-toggle="modal" data-target={`#delete${employee._id}`}>Delete</a>
-
-
-
-
-    <div className="modal fade" id={`edit${employee._id}`} data-backdrop="static" data-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-          <div className="modal-body delete-departament">
-            {alert? <div className="alert alert-danger" role="alert">{alert}</div>:null}
-
-            <form onSubmit={onSubmitEmployee}>
-              <label htmlFor="name">Name</label>
-              <input
-                    type="text"
-                    className="input-text"
-                    placeholder="Name..."
-                    name="name"
-                    value={name}
-                    onChange={handleChange}
-                />
-              <label htmlFor="age">Age</label>
-              <input
-                    type="number"
-                    className="input-text"
-                    placeholder="Age..."
-                    name="age"
-                    value={age}
-                    onChange={handleChange}
-                />
-
-              <label htmlFor="Position">position</label>
-              <input
-                    type="text"
-                    className="input-text"
-                    placeholder="Position..."
-                    name="position"
-                    value={position}
-                    onChange={handleChange}
-                />
-              <label htmlFor="schedule">Schedule</label>
-              <input
-                    type="text"
-                    className="input-text"
-                    placeholder="Schedule..."
-                    name="schedule"
-                    value={schedule}
-                    onChange={handleChange}
-                />
-              <label htmlFor="supervisor">Supervisor</label>
-              <input
-                    type="text"
-                    className="input-text"
-                    placeholder="Supervisor..."
-                    name="supervisor"
-                    value={supervisor}
-                    onChange={handleChange}
-                />
-
-              <input
-                  type="submit"
-                  className="btn btn-primario btn-submit btn-block"
-                  value="Guardar Employee"
-              />
-            </form>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div className="modal fade" id={`delete${employee._id}`} data-backdrop="static" data-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-          <div className="modal-body delete-departament">
-            <p>You are about to delete
-              <span>“{employee.name}”</span>
-            </p>
-            <button onClick={removeEmployee}>Delete</button>
-            <div className="buttons-container">
-              <div>
-                <a href="" className="proceed-btn"  data-dismiss="modal"><img src="img/right-arrow.png" alt=""/></a>
-              </div>
+       <div className="employee-cart">
+         <div className="cart-header">
+           <img src="img/worker.png" alt=""/>
+           <div className="cart-title">
+            <p className="name">{employee.name}</p>
+            <p className="position">{employee.position}</p>
+           </div>
+         </div>
+         <div>
+          <div className="footer-cart">
+            <div>
+              <p><span>Age:</span>{employee.age}</p>
+              <p><span>Schedule: </span>{employee.schedule}</p>
             </div>
+
           </div>
-        </div>
-      </div>
-    </div>
+
+         </div>
+         <a href="" className="" id="dropdownMenu3" data-toggle="dropdown"  aria-expanded="false"><img src="img/menu-cart.png" alt=""/></a>
+         <div className="dropdown-menu" aria-labelledby="dropdownMenu3">
+           <a href="#" className="dropdown-item" onClick={() => setShowEditEmp(true)} >Edit</a>
+           <a href="#" className="dropdown-item" onClick={() => setShowDeleteEmp(true)}>Delete</a>
+         </div>
+
+       </div>
+
+       <Modal
+         show={showEditEmp}
+         onHide={() => setShowEditEmp(false)}
+         dialogClassName="modal-90w"
+         aria-labelledby="example-custom-modal-styling-title"
+       >
+
+         {alert? <div className="alert alert-danger" role="alert">{alert}</div>:null}
+
+         <form onSubmit={onSubmitEmployee}>
+           <label htmlFor="name">Name</label>
+           <input
+                 type="text"
+                 className="input-text"
+                 placeholder="Name..."
+                 name="name"
+                 value={name}
+                 onChange={handleChange}
+             />
+           <label htmlFor="age">Age</label>
+           <input
+                 type="number"
+                 className="input-text"
+                 placeholder="Age..."
+                 name="age"
+                 value={age}
+                 onChange={handleChange}
+             />
+
+           <label htmlFor="Position">position</label>
+           <input
+                 type="text"
+                 className="input-text"
+                 placeholder="Position..."
+                 name="position"
+                 value={position}
+                 onChange={handleChange}
+             />
+           <label htmlFor="schedule">Schedule</label>
+           <input
+                 type="text"
+                 className="input-text"
+                 placeholder="Schedule..."
+                 name="schedule"
+                 value={schedule}
+                 onChange={handleChange}
+             />
+           <label htmlFor="supervisor">Supervisor</label>
+           <input
+                 type="text"
+                 className="input-text"
+                 placeholder="Supervisor..."
+                 name="supervisor"
+                 value={supervisor}
+                 onChange={handleChange}
+             />
+
+           <input
+               type="submit"
+               className="btn btn-primario btn-submit btn-block"
+               value="Guardar Employee"
+
+           />
+         </form>
+
+       </Modal>
+
+
+       <Modal
+         show={showDeleteEmp}
+         onHide={() => setShowDeleteEmp(false)}
+         dialogClassName="modal-90w"
+         aria-labelledby="example-custom-modal-styling-title"
+       >
+
+         <p>You are about to delete
+           <span>“{employee.name}”</span>
+         </p>
+         <button onClick={removeEmployee}>Delete</button>
+
+       </Modal>
 
 
 
