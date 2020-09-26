@@ -1,20 +1,31 @@
 import React, {useContext, useEffect} from 'react';
 import departmentContext from '../../context/departments/departmentContext'
+import employeesContext from '../../context/employee/employeeContext'
+
 import FormDepartment from './formDepartment'
 
 const Department = ({department}) => {
 
   // Departament context
   const departmentsContext = useContext(departmentContext)
-  const {getDepartaments, departmentList, deleteDepartment} = departmentsContext;
+  const {deleteDepartment, selectDepartment} = departmentsContext;
+
+  // Employee context
+  const employeeContext = useContext(employeesContext)
+  const {getEmployees} = employeeContext;
 
 
 const deleteDep = (departmentId) => {
   deleteDepartment(departmentId)
 }
 
+const seletDep = (departmentId) => {
+  selectDepartment(departmentId)
+  getEmployees(departmentId)
+}
+
   return (
-    <div className="button-department">
+    <div className="button-department" onClick={() => seletDep(department._id)}>
       {department.name}
       <div className="dropdown">
         <a href="" className="" id="dropdownMenu2" data-toggle="dropdown"  aria-expanded="false"><img src="img/menu-dep.png" alt=""/></a>
@@ -53,7 +64,7 @@ const deleteDep = (departmentId) => {
                 <FormDepartment
                 department={department}
                 />
-                
+
             </div>
           </div>
         </div>

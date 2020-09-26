@@ -4,10 +4,12 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import index from './components/layout/index';
 
 import DepartmentState from './context/departments/departmentState';
+import EmployeeState from './context/employee/employeeState';
 
 
 function App() {
   return (
+    <EmployeeState>
       <DepartmentState>
         <Router>
           <Switch>{/* Cada una de las paginas */}
@@ -15,7 +17,7 @@ function App() {
           </Switch>
         </Router>
       </DepartmentState>
-
+  </EmployeeState>  
   );
 }
 

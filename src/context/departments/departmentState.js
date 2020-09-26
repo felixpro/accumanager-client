@@ -7,7 +7,8 @@ import {
    LIST_DEPARTMENTS,
    CREATE_DEPARTMENTS,
    DELETE_DEPARTMENTS,
-   UPDATE_DEPARTMENTS
+   UPDATE_DEPARTMENTS,
+   SELECT_DEPARTMENT
   } from '../../types'
 
 
@@ -16,6 +17,8 @@ import {
 
    const initialState = {
      departmentList: [],
+     department: null,
+     departmentSelected: null
    }
 
 // crear dispath y state
@@ -74,7 +77,6 @@ const deleteDepartment = (departmentId) => {
 const updateDepartment = (department, departmentId) => {
   clienteAxios.put(`/department/${departmentId}`, department)
     .then(function (response) {
-      console.log(response)
       dispath({
          type: UPDATE_DEPARTMENTS,
          payload: department
@@ -85,6 +87,14 @@ const updateDepartment = (department, departmentId) => {
     })
 }
 
+// Select departament
+const selectDepartment = (departmentId) => {
+  dispath({
+     type: SELECT_DEPARTMENT,
+     payload: departmentId
+ })
+
+}
 
 
 
@@ -94,10 +104,13 @@ const updateDepartment = (department, departmentId) => {
      <departmentContext.Provider
          value={{
           departmentList: state.departmentList,
+          department: state.department,
+          departmentSelected: state.departmentSelected,
           getDepartaments,
           updateDepartment,
           deleteDepartment,
-          createDepartment
+          createDepartment,
+          selectDepartment
          }}
        >
        {props.children}

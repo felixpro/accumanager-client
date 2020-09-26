@@ -2,7 +2,8 @@ import {
   LIST_DEPARTMENTS,
   CREATE_DEPARTMENTS,
   DELETE_DEPARTMENTS,
-  UPDATE_DEPARTMENTS
+  UPDATE_DEPARTMENTS,
+  SELECT_DEPARTMENT
  } from '../../types'
 
 
@@ -26,15 +27,19 @@ export default (state, action) => {
       return {
         ...state,
         departmentList: state.departmentList.map(department => department._id === action.payload._id ? action.payload : department),
-
         }
 
-        case CREATE_DEPARTMENTS:
-        return {
+      case CREATE_DEPARTMENTS:
+      return {
+        ...state,
+        departmentList: [...state.departmentList, action.payload ]
+        }
+      case SELECT_DEPARTMENT:
+      return {
           ...state,
-          departmentList: [...state.departmentList, action.payload ]
-
-          }
+          department: state.departmentList.filter(department => department._id !== action.payload),
+          departmentSelected: action.payload
+        }
 
 
 
