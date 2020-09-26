@@ -4,7 +4,6 @@ import employeesContext from '../../context/employee/employeeContext'
 import Sidebar from './Sidebar'
 import LeftSide from './Leftside'
 
-
 const Index = ({props}) => {
 
   // Departament context
@@ -15,6 +14,7 @@ const Index = ({props}) => {
   // Employee context
   const employeeContext = useContext(employeesContext)
   const {getEmployees} = employeeContext;
+
 
 
   return (
@@ -29,6 +29,7 @@ const Index = ({props}) => {
           </div>
         </div>
       </div>
+
 
     </div>
   );

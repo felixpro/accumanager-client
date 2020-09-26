@@ -13,23 +13,44 @@ const Sidebar = () => {
     const [stateDepartment, saveDepartment] = useState({
       name: ""
     });
+    const {name} = stateDepartment;
+
+    // State alert
+    const [alertState, savealert] = useState({
+      alert: ''
+    });
+    const {alert} = alertState;
 
 
-  const {name} = stateDepartment;
-
-  // Read the content
-   const onChangeDepartment = e => {
-     saveDepartment({
-       ...stateDepartment,
-       [e.target.name] : e.target.value
-     })
-   }
+    // Read the content
+     const onChangeDepartment = e => {
+       saveDepartment({
+         ...stateDepartment,
+         [e.target.name] : e.target.value
+       })
+     }
 
 
    // Submit function
   const onSubmitDepartment = e => {
     e.preventDefault();
+
+    // Very basic validation
+    if (name === '') {
+      setTimeout(() => {
+        savealert({
+        alert : ""
+      })
+    }, 4000)
+    return  (
+      savealert({
+      alert : "Fields cannot be empty"
+    }))
+
+    }
+
     createDepartment(stateDepartment );
+
   }
 
 
@@ -54,6 +75,8 @@ const Sidebar = () => {
           <div className="modal-content">
             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             <div className="modal-body delete-departament">
+              {alert? <div className="alert alert-danger" role="alert">{alert}</div>:null}
+
               <form
                     className="new-department"
                     onSubmit={onSubmitDepartment}
@@ -74,6 +97,7 @@ const Sidebar = () => {
                       className="btn"
                       value="Add department"
                     />
+
 
                   </form>
             </div>

@@ -9,13 +9,24 @@ const FormDepartment = ({department}) => {
   const departmentsContext = useContext(departmentContext)
   const {createDepartment, updateDepartment} = departmentsContext;
 
-  // STATE
+  // State department
   const [stateDepartment, saveDepartment] = useState({
     name: department.name
   });
+  const {name} = stateDepartment;
 
 
-const {name} = stateDepartment;
+
+
+  // State alert
+  const [alertState, savealert] = useState({
+    alert: ''
+  });
+  const {alert} = alertState;
+
+
+
+
 
 // Read the content
  const onChangeDepartment = e => {
@@ -30,33 +41,53 @@ const {name} = stateDepartment;
 const onSubmitDepartment = e => {
   e.preventDefault();
 
+    // Very basic validation
+    if (name === '') {
+      setTimeout(() => {
+        savealert({
+        alert : ""
+      })
+    }, 4000)
+    return  (
+      savealert({
+      alert : "Fields cannot be empty"
+    }))
+
+    }
+
   updateDepartment(stateDepartment, department._id );
 }
 
 
+
+
    return (
-     <form
-           className="new-department"
-           onSubmit={onSubmitDepartment}
-           >
+     <div>
+       {alert? <div className="alert alert-danger" role="alert">{alert}</div>:null}
+       <form
+             className="new-department"
+             onSubmit={onSubmitDepartment}
+             >
 
-           <input
-             type="text"
-             className="input-text"
-             placeholder="Nombre Proyecto"
-             name="name"
-             onChange={onChangeDepartment}
-             value={name}
-           />
+             <input
+               type="text"
+               className="input-text"
+               placeholder="Nombre Proyecto"
+               name="name"
+               onChange={onChangeDepartment}
+               value={name}
+             />
 
 
-           <input
-             type="submit"
-             className="btn"
-             value="Add department"
-           />
+             <input
+               type="submit"
+               className="btn"
+               value="Add department"
+             />
 
-         </form>
+           </form>
+     </div>
+
    )
 }
 

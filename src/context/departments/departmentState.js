@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react'
+import React, {useReducer, useContext} from 'react'
 import departmentContext from './departmentContext'
 import departmentReducer from './departmentReducer'
 import clienteAxios from '../../config/axios'
@@ -8,7 +8,7 @@ import {
    CREATE_DEPARTMENTS,
    DELETE_DEPARTMENTS,
    UPDATE_DEPARTMENTS,
-   SELECT_DEPARTMENT
+   SELECT_DEPARTMENT,
   } from '../../types'
 
 
@@ -23,8 +23,6 @@ import {
 
 // crear dispath y state
 const [state, dispath] = useReducer(departmentReducer, initialState);
-
-
 
 
 // GET departaments
@@ -53,7 +51,7 @@ const createDepartment = (department) => {
      })
     })
     .catch(function (error) {
-      console.log(error);
+  console.log(error);
     })
 
 }
@@ -83,7 +81,7 @@ const updateDepartment = (department, departmentId) => {
      })
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error)
     })
 }
 

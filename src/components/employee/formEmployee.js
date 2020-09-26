@@ -27,6 +27,13 @@ const FormEmployee = () => {
 
   const {name, age, position, schedule, supervisor} = employee;
 
+  // State alert
+  const [alertState, savealert] = useState({
+    alert: ''
+  });
+  const {alert} = alertState;
+
+
   // Leer los valores del formulario
   const handleChange = e => {
       saveEmployee({
@@ -38,6 +45,21 @@ const FormEmployee = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+
+    // Very basic validation
+    if (name === '' || age === '' || position === '' || supervisor === '' || schedule === '') {
+      setTimeout(() => {
+        savealert({
+        alert : ""
+      })
+    }, 4000)
+    return  (
+      savealert({
+      alert : "Fields cannot be empty"
+    }))
+
+    }
+
     createEmployee(employee, departmentSelected )
   }
 
@@ -49,6 +71,7 @@ const FormEmployee = () => {
           <div className="modal-content">
             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             <div className="modal-body delete-departament">
+              {alert? <div className="alert alert-danger" role="alert">{alert}</div>:null}
 
               <form onSubmit={onSubmit}>
                 <label htmlFor="name">Name</label>
