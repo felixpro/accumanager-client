@@ -3,7 +3,9 @@ import departmentContext from '../../context/departments/departmentContext'
 
 
 
-const FormDepartment = ({department}) => {
+const FormDepartment = (props) => {
+
+  const {department, setShowEdit} = props
 
   // Departament context
   const departmentsContext = useContext(departmentContext)
@@ -56,7 +58,7 @@ const onSubmitDepartment = e => {
     }
 
   updateDepartment(stateDepartment, department._id );
-  
+  props.setShowEdit(false)
 }
 
 
@@ -73,7 +75,7 @@ const onSubmitDepartment = e => {
              <input
                type="text"
                className="input-text"
-               placeholder="Nombre Proyecto"
+               placeholder="New department"
                name="name"
                onChange={onChangeDepartment}
                value={name}
@@ -84,6 +86,7 @@ const onSubmitDepartment = e => {
                type="submit"
                className="btn"
                value="Add department"
+
              />
 
 

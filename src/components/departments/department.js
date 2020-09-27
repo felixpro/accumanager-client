@@ -46,10 +46,12 @@ const [showDelete, setShowDelete] = useState(false);
         onHide={() => setShowEdit(false)}
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
+        className="modal-react"
       >
 
         <FormDepartment
         department={department}
+        setShowEdit={setShowEdit}
         />
 
       </Modal>
@@ -59,6 +61,7 @@ const [showDelete, setShowDelete] = useState(false);
         onHide={() => setShowDelete(false)}
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
+        className="modal-react"
       >
 
         <p>You are about to delete

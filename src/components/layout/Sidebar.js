@@ -1,11 +1,15 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import DepartmentList from '../departments/departmentList'
 
 
-const Sidebar = () => {
+const Sidebar = (props) => {
+
+useEffect(()=> {
+props.getTheme()
+}, [props.theme])
 
   return (
-    <aside>
+    <aside className={props.theme}>
       <div className="department-section">
         <div className="company-section">
           <div className="company-img">

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState,useEffect } from 'react';
 import departmentContext from '../../context/departments/departmentContext'
 
 import EmployeeList from '../employee/employeeList'
@@ -6,7 +6,13 @@ import FormEmployee from '../employee/formEmployee'
 import Modal from 'react-bootstrap/Modal'
 
 
-const LeftSide = () => {
+const LeftSide = (props) => {
+
+
+  useEffect(()=> {
+  props.getTheme()
+  }, [props.theme])
+
 
   // Departament context
   const departmentsContext = useContext(departmentContext)
@@ -37,9 +43,6 @@ const LeftSide = () => {
  // Submit function
 const onSubmitDepartment = e => {
   e.preventDefault();
-
-
-
   // Very basic validation
   if (name === '') {
     setTimeout(() => {
@@ -53,14 +56,20 @@ const onSubmitDepartment = e => {
   }))
 
   }
-
   createDepartment(stateDepartment );
-
 }
 // modal
 const [addDepart, setShowAdd] = useState(false);
 const [addEmploye, setShowEmployee] = useState(false);
+const [addTheme, setShowTheme] = useState(false);
 
+
+const changeSelect = data => {
+  const dataOBJ = {
+    name: data
+  }
+  props.updateTheme(dataOBJ)
+}
 
 
   return (
@@ -72,6 +81,7 @@ const [addEmploye, setShowEmployee] = useState(false);
       </div>
       <div className="left-section">
         <div className="Left-bottoms">
+          <a className="modal-btn active-btn" onClick={() => setShowTheme(true)}>Theme<img src="img/plus.png" alt=""/></a>
           <a className="modal-btn active-btn" onClick={() => setShowAdd(true)}>Department<img src="img/plus.png" alt=""/></a>
           { departmentSelected ?  (<a  type="button" className="modal-btn add-btn active-btn" onClick={() => setShowEmployee(true)} >Employee<img src="img/plus.png" alt=""/></a>) : <a  type="button" className="greyOut-btn  modal-btn add-btn" >Employee<img src="img/plus-grey.png" alt=""/></a>  }
 
@@ -82,6 +92,7 @@ const [addEmploye, setShowEmployee] = useState(false);
             onHide={() => setShowAdd(false)}
             dialogClassName="modal-90w"
             aria-labelledby="example-custom-modal-styling-title"
+            className="modal-react"
           >
             {alert? <div className="alert alert-danger" role="alert">{alert}</div>:null}
             <form
@@ -92,7 +103,7 @@ const [addEmploye, setShowEmployee] = useState(false);
                   <input
                     type="text"
                     className="input-text"
-                    placeholder="Nombre Proyecto"
+                    placeholder="Department name"
                     name="name"
                     onChange={onChangeDepartment}
                     value={name}
@@ -114,12 +125,30 @@ const [addEmploye, setShowEmployee] = useState(false);
             onHide={() => setShowEmployee(false)}
             dialogClassName="modal-90w"
             aria-labelledby="example-custom-modal-styling-title"
+            className="modal-react"
           >
 
-          <FormEmployee/>
+          <FormEmployee
+            setShowEmployee={setShowEmployee}
+          />
 
           </Modal>
 
+          <Modal
+            show={addTheme}
+            onHide={() => setShowTheme(false)}
+            dialogClassName="modal-90w"
+            aria-labelledby="example-custom-modal-styling-title"
+            className="modal-react"
+          >
+
+          <div className="theme-section">
+            <button className="dark" onClick={() => changeSelect("Dark")}>Dark</button>
+            <button className="grey" onClick={() =>changeSelect("Grey")}>Grey</button>
+            <button className="green" onClick={() =>changeSelect("Green")}>Green</button>
+          </div>
+
+          </Modal>
 
 
         </div>

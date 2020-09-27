@@ -5,11 +5,12 @@ import index from './components/layout/index';
 
 import DepartmentState from './context/departments/departmentState';
 import EmployeeState from './context/employee/employeeState';
+import ThemeState from './context/theme/themeState';
 
 
 function App() {
   return (
-
+<ThemeState>
       <EmployeeState>
         <DepartmentState>
           <Router>
@@ -19,7 +20,7 @@ function App() {
           </Router>
         </DepartmentState>
     </EmployeeState>
-
+  </ThemeState>
   );
 }
 

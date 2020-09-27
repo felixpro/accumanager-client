@@ -5,7 +5,29 @@ html, body{
   flex-direction: column;
 }
 
+.Green {
+    background: green !important;
+}
 
+.Grey {
+  background: grey !important;
+}
+
+.Dark {
+  background: #000000 !important;
+}
+
+.select-department {
+  position: relative;
+    top: 200px;
+    text-align: center;
+    left: -100px;
+    font-family: OpenSans;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--93c5ff);
+    overflow: hidden;
+}
 
 
 #root{
@@ -285,3 +307,7 @@ margin-top: 150px;
   justify-content: center;
   margin-top: 15px;
  }
+
+
+.modal-react {
+}

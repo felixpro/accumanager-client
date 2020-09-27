@@ -55,7 +55,7 @@ const Employee = ({employee}) => {
 
       }
       updateEmployee(employeeState, employee._id)
-     setShowEditEmp(false)
+       setShowEditEmp(false)
     }
 
 
@@ -104,6 +104,7 @@ const [showDeleteEmp, setShowDeleteEmp] = useState(false);
          onHide={() => setShowEditEmp(false)}
          dialogClassName="modal-90w"
          aria-labelledby="example-custom-modal-styling-title"
+         className="modal-react"
        >
 
          {alert? <div className="alert alert-danger" role="alert">{alert}</div>:null}
@@ -172,6 +173,7 @@ const [showDeleteEmp, setShowDeleteEmp] = useState(false);
          onHide={() => setShowDeleteEmp(false)}
          dialogClassName="modal-90w"
          aria-labelledby="example-custom-modal-styling-title"
+         className="modal-react"
        >
 
          <p>You are about to delete

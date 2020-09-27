@@ -6,7 +6,7 @@ import employeesContext from '../../context/employee/employeeContext'
 import EmployeeList from '../employee/employeeList'
 
 
-const FormEmployee = () => {
+const FormEmployee = (props) => {
 
   // Employee context
   const employeeContext = useContext(employeesContext)
@@ -61,7 +61,7 @@ const FormEmployee = () => {
     }
 
     createEmployee(employee, departmentSelected )
-
+    props.setShowEmployee(false)
   }
 
   return (
@@ -120,6 +120,7 @@ const FormEmployee = () => {
             type="submit"
             className="btn btn-primario btn-submit btn-block"
             value="Guardar Employee"
+
         />
       </form>
     </div>

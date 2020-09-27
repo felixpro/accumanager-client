@@ -18,7 +18,7 @@ const EmployeeList = (props) => {
 
 
 
-if (employees.length === 0) return <p>There's not any employee</p>;
+if (employees.length === 0) return <p className="select-department">No employee is registered</p>;
 
    return (
      <div className="employee-list">
