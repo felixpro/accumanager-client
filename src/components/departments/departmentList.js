@@ -12,7 +12,7 @@ const DepartmentList = (props) => {
   useEffect(() => {
 
     getDepartaments()
-  }, [departmentList])
+  }, [])
 
 // Proyectos tiene contenidos?
 if (departmentList.length === 0) return <p>No hay departamentos.</p>;
